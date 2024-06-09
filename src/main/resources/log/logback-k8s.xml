@@ -1,0 +1,23 @@
+<configuration>
+
+    <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">
+        <lokiUri>${LOKI_DISTRIBUTOR_URL}</lokiUri>
+        <batchSize>1</batchSize>
+        <maxRetries>3</maxRetries>
+        <tags>
+            <tag>
+                <key>app</key>
+                <value>my-service</value>
+            </tag>
+        </tags>
+        <encoder>
+            <pattern>
+                {"streams": [{ "stream": {"app": "my-service", "host": "${HOSTNAME}"}, "values": [["%date{ISO8601}","%message"]] }]}
+            </pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="LOKI" />
+    </root>
+</configuration>
