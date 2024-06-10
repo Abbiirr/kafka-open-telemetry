@@ -1,6 +1,6 @@
 spring:
   application:
-    name: my-service
+    name: ${SERVICE_NAME:default-service}
   kafka:
     bootstrap-servers: localhost:29092
 management:

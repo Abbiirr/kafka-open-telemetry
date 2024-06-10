@@ -44,6 +44,8 @@ public class OrderSink {
             Span span = tracer.spanBuilder("kafka-consume")
                     .setParent(context)
                     .setAttribute("correlation.id", correlationId)
+                    .setAttribute("trace.id", traceId)
+                    .setAttribute("span.id", spanId)
                     .startSpan();
 
             try {
